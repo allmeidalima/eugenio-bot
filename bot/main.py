@@ -69,7 +69,7 @@ def clear_items(user_id: int):
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "🛒 Olá! Eu sou o Eugênio.\n\n"
+        "🛒 Olá, Dona Celina! Eu sou o Eugênio.\n\n"
         "Comandos:\n"
         "/lista → adicionar produtos\n"
         "/fim → finalizar lista\n"
@@ -82,14 +82,14 @@ async def lista(update: Update, context: ContextTypes.DEFAULT_TYPE):
     USERS_IN_INSERT_MODE.add(update.effective_user.id)
     await update.message.reply_text(
         "📝 Modo lista ativado.\n"
-        "Envie os produtos um por um.\n"
+        "O que a senhora deseja comprar dona Celina?.\n"
         "Quando terminar, envie /fim"
     )
 
 
 async def fim(update: Update, context: ContextTypes.DEFAULT_TYPE):
     USERS_IN_INSERT_MODE.discard(update.effective_user.id)
-    await update.message.reply_text("✅ Lista salva com sucesso!")
+    await update.message.reply_text("✅ Lista salva com sucesso, dona Celina!")
 
 
 async def receber_produto(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -162,7 +162,7 @@ async def toggle_item(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def limpar(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
     clear_items(user_id)
-    await update.message.reply_text("🗑️ Lista apagada com sucesso!")
+    await update.message.reply_text("🗑️ Lista apagada Dona Celina, pode criar outra!")
 
 
 # ====== MAIN ======
