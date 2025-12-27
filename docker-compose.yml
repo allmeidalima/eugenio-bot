@@ -1,0 +1,7 @@
+services:
+  eugenio:
+    build: .
+    container_name: eugenio-bot
+    restart: always
+    env_file:
+      - .env
