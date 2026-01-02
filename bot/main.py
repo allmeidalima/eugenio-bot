@@ -32,8 +32,6 @@ HEADERS = {
 
 TABLE_URL = f"{SUPABASE_URL}/rest/v1/market_list"
 
-
-
 def add_item(user_id: int, product_name: str):
     payload = {
         "telegram_user_id": user_id,
@@ -50,8 +48,6 @@ def get_items():
     response = requests.get(url, headers=HEADERS)
     response.raise_for_status()
     return response.json()
-
-
 
 def toggle_item_checked(item_id: str, checked: bool):
     url = f"{TABLE_URL}?id=eq.{item_id}"
@@ -185,7 +181,6 @@ def main():
 
     print("🤖 Eugênio está rodando...")
     app.run_polling()
-
 
 if __name__ == "__main__":
     main()
