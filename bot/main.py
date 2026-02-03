@@ -23,6 +23,7 @@ TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
+
 USERS_IN_INSERT_MODE = set()
 
 ##Headers
@@ -43,9 +44,6 @@ def add_item(user_id: int, product_name: str):
     }
     requests.post(TABLE_URL, json=payload, headers=HEADERS)
 
-
-
-
 def get_items():
     url = (
         f"{TABLE_URL}"
@@ -54,8 +52,6 @@ def get_items():
     response = requests.get(url, headers=HEADERS)
     response.raise_for_status()
     return response.json()
-
-
 
 def toggle_item_checked(item_id: str, checked: bool):
     url = f"{TABLE_URL}?id=eq.{item_id}"
@@ -190,7 +186,6 @@ def main():
 
     print("🤖 Eugênio está rodando...")
     app.run_polling()
-
 
 if __name__ == "__main__":
     main()
