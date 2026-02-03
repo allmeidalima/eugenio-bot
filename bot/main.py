@@ -44,6 +44,8 @@ def add_item(user_id: int, product_name: str):
     }
     requests.post(TABLE_URL, json=payload, headers=HEADERS)
 
+
+##get_items
 def get_items():
     url = (
         f"{TABLE_URL}"
@@ -53,6 +55,7 @@ def get_items():
     response.raise_for_status()
     return response.json()
 
+##check itens
 def toggle_item_checked(item_id: str, checked: bool):
     url = f"{TABLE_URL}?id=eq.{item_id}"
     payload = {"checked": checked}
