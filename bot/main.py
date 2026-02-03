@@ -17,13 +17,15 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
+##Tokens
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
-
 USERS_IN_INSERT_MODE = set()
 
+##Headers
 HEADERS = {
     "apikey": SUPABASE_KEY,
     "Authorization": f"Bearer {SUPABASE_KEY}",
@@ -33,12 +35,15 @@ HEADERS = {
 
 TABLE_URL = f"{SUPABASE_URL}/rest/v1/market_list"
 
+#Add itens
 def add_item(user_id: int, product_name: str):
     payload = {
         "telegram_user_id": user_id,
         "product_name": product_name
     }
     requests.post(TABLE_URL, json=payload, headers=HEADERS)
+
+
 
 
 def get_items():
@@ -49,6 +54,8 @@ def get_items():
     response = requests.get(url, headers=HEADERS)
     response.raise_for_status()
     return response.json()
+
+
 
 def toggle_item_checked(item_id: str, checked: bool):
     url = f"{TABLE_URL}?id=eq.{item_id}"
@@ -126,6 +133,7 @@ async def mercado(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def toggle_item(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    print("🔥 CALLBACK RECEBIDO:", update.callback_query.data)
     query = update.callback_query
     await query.answer()
 
@@ -182,6 +190,7 @@ def main():
 
     print("🤖 Eugênio está rodando...")
     app.run_polling()
+
 
 if __name__ == "__main__":
     main()
